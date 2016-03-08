@@ -1,0 +1,216 @@
+{% set data = session_flashed('__form_data').0 %}
+{% set authorizationCode = (data) ? data : authorizationCode %}
+{% set authUrl = (authUrl) ? authUrl : '#' %}
+{% set analyticaAdminSetting = (analyticaAdminSetting) ? analyticaAdminSetting : '' %}
+{% set resultsHeader = (resultsHeader) ? resultsHeader : '' %}
+{% set totalsForAllResults = (totalsForAllResults) ? totalsForAllResults : '' %}
+{% set results = (results) ? results : '' %}
+{% set countresults = (countresults) ? countresults : '' %}
+{% set numberOfTotalPages = (numberOfTotalPages) ? numberOfTotalPages : '' %}
+
+<div class="wrap">
+
+    <h2>{{ title }}</h2>
+    {% spaceless %}
+		{%- if not results -%}
+		<!--<a target="blank"  href="{{authUrl}}">Get Authentication</a>-->
+		 <a href='#' onClick='login();' id="loginText">Get Authentication </a>
+    <a href="#" style="display:none" id="logoutText" target='myIFrame' onclick="myIFrame.location='https://www.google.com/accounts/Logout'; startLogoutPolling();return false;">logout </a>
+    <iframe name='myIFrame' id="myIFrame" style='display:none'></iframe>
+    <div id='uName'></div>
+        <form id="poststuff" action="{{ panel_url('Analytica::mainPanel') }}&action=save-accesscode" method="post">
+            <div class="widefat postbox">
+                <h2 class="hndle inside"><span>Authentication Section</span></h2>
+                <div class="inside">
+                    <table class="form-table">
+                        <tr>
+                            <th>
+                                <label for="authorizationCode">Authentication Code: </label>
+                            </th>
+                            <td>
+                                <input name="authorizationCode" type="text" value="{{ authorizationCode }}" class="large-text" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="inside">
+                <input class="button button-primary" type="submit" value="Save Authorization Code">
+            </div>
+        </form>
+		{%- else  -%}
+			<form id="save" action="{{ panel_url('Analytica::mainPanel') }}&action=save-settings" method="post">
+			    <div class="widefat postbox">
+				    <h2 class="inside">Analytica Custom Settings</h2>
+				    <p class="inside">Choose Profile And Enter Other Details</p>
+                    <div class="inside">
+						<table class="form-table">
+							<tr>
+								<th>
+									<label for="profiles">Choose Profile: </label>
+								</th>
+								<td>
+								   {{ analyticaAdminSetting.profiles|raw }}
+								</td>
+							</tr>
+							<tr>
+								<th>
+									<label for="startDate">Start Date:</label>
+								</th>
+								<td>
+									<input type="text" class="alignleft" name="analyticaAdminSetting[startDate]" id="startDate" value="{{analyticaAdminSetting.startDate}}" />
+								</td>
+							</tr>
+							<tr>
+								<th>
+									<label for="endDate">End Date:</label>
+								</th>
+								<td>
+									<input type="text" class="alignleft" name="analyticaAdminSetting[endDate]" id="endDate" value="{{analyticaAdminSetting.endDate}}" />
+								</td>
+							</tr>
+							<tr>
+								<th>
+									<label for="pageViews">Page Views:</label>
+								</th>
+								<td>
+									{%- if analyticaAdminSetting.pageViews -%}
+									<input type="number" min="1" max="100" class="small-text" name="analyticaAdminSetting[pageViews]" id="pageViews" value="{{analyticaAdminSetting.pageViews}}" />
+									{%- else  -%}
+									<input type="number" min="1" max="100" class="small-text" name="analyticaAdminSetting[pageViews]" id="pageViews" value="10" />
+									{%- endif -%}
+								</td>
+							</tr>
+							<tr>
+								<th>
+									<label for="sortingOrder">Sorting Order( Ascending / Descending ):</label>
+								</th>
+								<td>
+									<select type="option" class="small-text" name="analyticaAdminSetting[order]" id="sortingOrder" value="{{analyticaAdminSetting.order}}" >
+										<option value="ascending">Ascending</option>
+										{%- if analyticaAdminSetting.order == 'descending' -%}
+											<option selected value="descending">Descending</option>
+										{%- else -%}
+										    <option value="descending">Descending</option>
+										{%- endif -%}
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									<label for="excludeDraftPost">Exclde Draft Posts:</label>
+								</th>
+								<td>
+									<input type="checkbox"  name="analyticaAdminSetting[excludeDraftPost]" id="excludeDraftPost" value="{{analyticaAdminSetting.excludeDraftPost}}" />
+								</td>
+							</tr>
+							<tr>
+								<th>
+									<label for="excludeNotFound">Exclude Not Found Posts:</label>
+								</th>
+								<td>
+									<input type="checkbox"  name="analyticaAdminSetting[excludeNotFoundPost]" id="excludeNotFound" value="{{analyticaAdminSetting.excludeNotFoundPost}}" />
+								</td>
+							</tr>
+							
+							<tr>
+							    <th>
+									<label for="numbersOfItemsInPage">Set Number Of Posts Per Page:</label>
+								</th>
+							    <td>
+							        {{ analyticaAdminSetting.numbersOfItemsInPage|raw }}
+								</td>
+							</tr>
+							
+						</table>
+                    </div>
+
+					<div class="inside">
+						<p class="submit">
+							<input class="button button-primary" type="submit" value="Save Settings">
+						</p>
+					</div>
+				</div>
+			</form>
+	    {%- endif -%}
+    {% endspaceless %}
+    {% spaceless %}
+	{%- if resultsHeader -%}
+	
+	<div class="analytics-report">
+	    <p class="widefat submit"><input type="submit" name="draft" id="draft" class="button delete" value="Send to Draft"></p>
+	    <table class="widefat wp-list-table fixed striped report-table">
+			<thead>
+			    <tr class="header-row">
+				    <td id="cb" class="manage-column column-cb check-column"><label class="screen-reader-text" for="cb-select-all-1">Select All</label><input id="cb-select-all-1" type="checkbox"></td>
+					{% for header in resultsHeader %}
+	                    <th scope="col" class="manage-column header' . {{header.name}} . '" >{{header.name}}
+						</th>
+					{% endfor %}
+		        </tr>
+				<tr>
+				    <td scope="col"></td>
+					<td scope="col">Post Name</td>
+					<td scope="col">Page Path Level1</td>
+					<td scope="col"> {{ totalsForAllResults['ga:pageViews'] }} </td>
+					<td scope="col"> {{ totalsForAllResults['ga:uniquePageviews'] }} </td>
+					<td scope="col">{{ totalsForAllResults['ga:avgTimeOnPage'] }}</td>
+					<td scope="col"> {{ totalsForAllResults['ga:bounceRate']|round(2, 'floor')}}</td>
+					<td scope="col"> {{ totalsForAllResults['ga:exitRate']|round(2, 'floor') }}</td>
+				</tr>
+			</thead>
+			<tbody>
+			    {% for key,result in results %}
+			    <tr class="content-row">	
+				
+				    <th scope="row" class="check-column">
+					    <label class="screen-reader-text" for="cb-select-{{result[1]}}">Select All</label>
+						<input class="select-post" id="cb-select-{{result[1]}}" type="checkbox" name="post[]" value="{{result[1]}}">
+						<div class="locked-indicator"></div>
+					</th>
+					
+					<td class="has-row-actions column-primary report" id="{{result[1]}}">{{result[0]|raw}}</td>
+						
+					<td class="has-row-actions column-primary report">{{result[1]}}</td>
+				
+				
+					<td class="has-row-actions column-primary report">{{result[2]}}</td>
+				
+				
+					<td class="has-row-actions column-primary report">{{result[3]}}</td>
+				
+				
+					<td class="has-row-actions column-primary report">{{result[4]}}</td>
+				
+				
+					<td class="has-row-actions column-primary report">{{result[5]}}</td>
+				
+				
+					<td class="has-row-actions column-primary report">{{result[6]}}</td>
+					
+			    </tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	{%- if results|length < countresults -%}
+	    <div class="tablenav-pages">
+		    <span class="displaying-num">{{ countresults }} items</span>
+			<span class="first" aria-hidden="true">&laquo;</span>
+			<span class="prev tablenav-pages-navspan" aria-hidden="true">&lsaquo;</span>
+			<span class="screen-reader-text">Current Page</span>
+			<span id="table-paging" class="paging-input">1</span> of <span id="total-pages" class="total-pages">{{ numberOfTotalPages }}</span>
+			<a class="next-page" href="#">
+				<span class="screen-reader-text">Next page</span>
+				<span class="tablenav-pages-navspan" aria-hidden="true">&rsaquo;</span>
+			</a>
+			<a class="last-page" href="#">
+				<span class="screen-reader-text">Last page</span>
+				<span aria-hidden="true">&raquo;</span>
+			</a>
+   </div>
+    {%- endif -%}
+	{%- endif -%}
+	{% endspaceless %}
+</div>

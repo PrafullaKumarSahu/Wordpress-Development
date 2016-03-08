@@ -1,0 +1,123 @@
+
+.carousel{
+    background-color: #FFF;
+}
+.flex-slider-center h2{
+    color: #000;
+}
+.flex-slider-center span{
+    background-color: rgba( 15, 170, 200, 0.5 );
+    color: #000000;
+    text-shadow: 0 3px 2px rgba(0, 0, 0, 0.9);
+}
+.flex-slider-center p{
+    color: #000;
+}
+.qua-logo{
+    color: #3399CC;
+}
+
+.qua_footer_area{
+    background: none;
+    border-top: 0px;
+}
+.qua_footer_area p{
+    color: #3399CC;
+}
+.qua_footer_area p a{
+    color: #0000ff;
+}
+.qua_footer_area p a:hover{
+    color: #00007D;
+    text-decoration: underline;
+}
+
+.qua-separator{
+    background-color: #3399CC;
+}
+.widgettitle{
+    border-bottom: 5px solid #3399CC;
+    width: 100%;
+    font-size: 20px;
+    margin: 0 0 10px;
+    word-wrap: break-word;
+    font-family: OpenSansSemiBold !important;
+}
+.qua_post_date {
+    background: #3399CC;
+    color: #ffffff;
+}
+blockquote {
+    border-left: 5px solid #3399CC;
+}
+a {
+    color: #0099CC;
+}
+a:hover, a:focus {
+    color: #00007D;
+    text-decoration: underline;
+}
+
+.jetpack-map-address li{
+    list-style-type: none;
+}
+
+input.pushbutton-wide {
+    background-image: none;
+    background-color: #0099CC;
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 5px;
+    cursor: pointer;
+    background: #0099CC;
+    color: #fff;
+    display: inline-block;
+    font-family: 'OpenSansSemiBold';
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 20px;
+    margin-bottom: 0;
+    padding: 5px 12px;
+    text-align: center;
+    transition: all 0.4s ease 0s;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.qua_sidebar_widget #searchsubmit {
+    background-color: #0099CC;
+}
+
+.qua-separator-small {
+    background-color: #0099CC;
+}
+
+.qua_sidebar_link p:hover a, .widget ul li a:hover, .qua_sidebar_widget ul li a:hover {
+    color: #00007D;
+    text-decoration: underline;
+}
+.qua_page_heading h1{
+	margin: 0 auto 0px;
+	padding: 0px;
+	background-position: 10px 35px;
+	text-align: left;
+}
+.qua_page_heading{
+	margin: 0 auto 6px;
+    padding: 0px;
+}
+.qua_send_button, #qua_send_button{
+    background-color: #0099CC;
+    border-color: #0099CC;
+    color: #ffffff;
+}
+.qua_send_button:hover, #qua_send_button:hover{
+    background-color: #ffffff;
+    border: 1px solid #0099CC;
+    color: #6a6a6a;
+}
+.reply a{
+    color: #0099CC;
+}
+.reply a:hover, .reply a:focus {
+    color: #00007D;
+}

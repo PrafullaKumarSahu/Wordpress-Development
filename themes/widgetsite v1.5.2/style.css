@@ -1,0 +1,648 @@
+/*
+Theme Name: widgetsite
+Theme URI: http://www.widgetsite.org/
+Author: Indibits
+Author URI: http://indibits.com
+Description: WordPress theme developed for www.widgetsite.org by Indibits. This is is built on _tk theme, which is built on _s (or Underscores) http://underscores.me/ theme.
+Version: 1.2.3
+License: (C) 2015 www.widgetsite.org
+Text Domain: widgetsite
+
+Tags: gray, light, two-columns, right-sidebar, responsive-layout, custom-background, custom-colors, custom-header, custom-menu, featured-images, flexible-header, sticky-post,  theme-options, threaded-comments, translation-ready
+
+Credits:
+
+1. Bootstrap
+
+ * Bootstrap v3.3.1 (http://getbootstrap.com)
+ * Copyright 2011-2014 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+
+ * Generated using the Bootstrap Customizer (http://getbootstrap.com/customize/?id=f58353a31151a8c05d7c)
+ * Config saved to config.json and https://gist.github.com/f58353a31151a8c05d7c
+
+2. wp_bootstrap_navwalker
+
+* Class Name: wp_bootstrap_navwalker
+* GitHub URI: https://github.com/twittem/wp-bootstrap-navwalker
+
+3. Glyphicons
+
+ * http://getbootstrap.com/components/
+
+4. _tk
+ 
+ * Version: 1.1.9
+ * The _tk Project on Github - https://github.com/Themekraft/_tk/
+ * License: GNU General Public License v3.0 /
+ * License URI: http://www.gnu.org/licenses/gpl-3.0.html
+
+5._s (or Underscores) 
+
+ * http://underscores.me/, (C) 2012-2013 Automattic, Inc. Twitter Bootstrap
+
+*/
+
+/* My Minimal WordPress Styling comes here */
+
+/* This is a small security for too long strings titles */
+body {
+	word-wrap: break-word;
+}
+
+
+/* Alignment */
+.alignleft {
+	display: inline;
+	float: left;
+	margin-right: 1.5em;
+}
+.alignright {
+	display: inline;
+	float: right;
+	margin-left: 1.5em;
+}
+.aligncenter {
+	clear: both;
+	display: block;
+	margin: 0 auto;
+}
+
+
+/* Images and wp-captions should always fit and be responsive */
+img {
+	display: inline-block;
+	height: auto;
+	max-width: 100%;
+}
+img[class*="wp-image-"] {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.wp-caption {
+	border: 1px solid #ccc;
+	margin-bottom: 10px;
+	max-width: 100%;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	padding: 0 10px;
+}
+.wp-caption.aligncenter {
+	margin-bottom: 10px;
+}
+.wp-caption img[class*="wp-image-"] {
+	display: block;
+}
+.wp-caption .wp-caption-text {
+	text-align: center;
+	margin-top: 10px;
+}
+
+/* WP Gallery */
+.gallery {
+	margin-bottom: 1.5em;
+}
+.gallery a img {
+	border: none;
+	height: auto;
+	max-width: 90%;
+}
+.gallery dd {
+	margin: 0;
+}
+.gallery-caption {
+	display: block;
+}
+
+/* Make sure embeds and iframes fit their containers */
+embed,
+iframe,
+object {
+	max-width: 100%;
+}
+
+
+/* Text meant only for screen readers */
+.screen-reader-text {
+	clip: rect(1px, 1px, 1px, 1px);
+	position: absolute !important;
+}
+.screen-reader-text:hover,
+.screen-reader-text:active,
+.screen-reader-text:focus {
+	background-color: #f1f1f1;
+	border-radius: 3px;
+	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+	clip: auto !important;
+	color: #21759b;
+	display: block;
+	font-size: 14px;
+	font-weight: bold;
+	height: auto;
+	left: 5px;
+	line-height: normal;
+	padding: 15px 23px 14px;
+	text-decoration: none;
+	top: 5px;
+	width: auto;
+	z-index: 100000; /* Above WP toolbar */
+}
+
+
+/* Content */
+.main-content-inner {
+	padding-bottom: 1.5em;
+}
+.hentry {
+	margin: 0 0 1.5em;
+}
+.sticky {
+	display: block;
+}
+.bypostauthor {
+	display: block;
+}
+
+
+/* Clearing */
+.clear {
+	clear: both;
+}
+
+/* Navigation */
+
+.dropdown-submenu{position:relative;}
+.dropdown-submenu>.dropdown-menu{top:0;left:100%;-webkit-border-radius:0 6px 6px 6px;-moz-border-radius:0 6px 6px 6px;border-radius:0 6px 6px 6px;}
+.dropdown-submenu:active>.dropdown-menu, .dropdown-submenu:hover>.dropdown-menu {
+display: block;
+}
+.dropdown-submenu>a:after{display:block;content:" ";float:right;width:0;height:0;border-color:transparent;border-style:solid;border-width:5px 0 5px 5px;border-left-color:#cccccc;margin-top:5px;margin-right:-10px;}
+.dropdown-submenu:active>a:after{border-left-color:#ffffff;}
+.dropdown-submenu.pull-left{float:none;}.dropdown-submenu.pull-left>.dropdown-menu{left:-100%;margin-left:10px;-webkit-border-radius:6px 0 6px 6px;-moz-border-radius:6px 0 6px 6px;border-radius:6px 0 6px 6px;}
+
+
+/* Here some needed widget styles
+ * Most widgets are adapted in the file bootstrap-wp.js - and REALLY easy to modify! ;) */
+.widget { margin-bottom: 2em; }
+.widget_nav_menu ul.sub-menu li, .widget_pages ul.children li { padding-left: 15px; }
+
+/* Hiding the search widget's button in widgets. thats just too old-skool. :) but if you want it back, just delete the next line.
+ * Note: you can change the whole appearance of the search_form() function in our searchform.php */
+.widget_search .search-form input[type="submit"] { display: none; }
+
+/* Make sure select elements fit in widgets */
+.widget select {
+	max-width: 100%;
+}
+
+/* Nested comments? They are threaded and nested already, you just need to add your own styling to finalize!
+ * For example with some margin, like the line below ;) Delete, modify, change classes in HTML if you desire another style */
+ .comment .children { margin-left: 1.5em; }
+
+/**
+* Some WP Theme Repository requirements
+*/
+
+.sticky {
+}
+
+.gallery-caption {
+
+}
+
+.bypostauthor {
+
+}
+
+.entry-meta {
+	clear: both;
+}
+
+/*
+ == Quick CSS styling tips ==
+
+ You can start off in a rough direction with some minimal styles.
+ See below for some tips. ;)
+
+
+ == Want to have the whole site wrapped? ==
+
+ Just fill the .container class with some background color to have a the whole site "wrapped".
+ This works so easy because every main part is wrapped only once into a container class by bootstrap.
+ Try out by decommenting the next line and go from there.
+
+ .container { background: #f9f9f9; border-right: 1px solid #eee; border-left: 1px solid #eee; }
+
+
+ == Want to wrap just the content and sidebar in Bootstrap style? ==
+
+ That one is a great example to show that some things are much cleaner and easier to do via just adding some HTML classes.
+ In this case, we will add just one CSS class "panel", look for example at the beginning in content.php!
+
+
+ == Infinite Scrolling by Jetpack ==
+ You can enable this cool feature by simply decommenting the lines below and make sure you use the same classes on the right place in your html..
+
+/* Globally hidden elements when Infinite Scroll is supported and in use.
+ * Older / Newer Posts Navigation (the pagination, must always be hidden), Theme Footer only when set to scrolling.. */
+
+/*
+.infinite-scroll .page-links,
+.infinite-scroll.neverending .site-footer {
+	display: none;
+}
+*/
+
+/* When Infinite Scroll has reached its end we need to re-display elements that were hidden (via .neverending) before */
+
+/*
+.infinity-end.neverending .site-footer {
+	display: block;
+}
+*/
+
+body{
+	color: #000000;
+	font-family: 'Roboto', sans-serif;
+	font-size: 13px;
+	line-height: 22px;
+}
+
+/* headings */
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 700;
+	margin: 0 0 16px;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	color: #000000;
+	font-family: 'Roboto', sans-serif;
+	line-height: 1.1;
+}
+h3 {
+	font-size: 16px;
+	line-height: 18px;
+	margin-bottom: 8px;
+}
+/* Anchors */
+
+a {
+	background: transparent;
+	color: inherit;
+	text-decoration: none;
+	transition: all 0.3s ease-in-out 0s;
+	-webkit-transition: all 0.3s ease-in-out 0s;
+	-moz-transition: all 0.3s ease-in-out 0s;
+}
+a:hover {
+	color: #ca2f1a;
+	text-decoration: none;
+}
+
+a:active, a:hover {
+	outline: 0;
+}
+
+/**
+* Social Links and Search Box in the Header Section
+*/
+#content h2 {
+	margin-top: 0px;
+}
+ 
+.container {
+	background: #ffffff;
+	margin: 0 auto;
+}
+.site-header  .container{
+	margin-top: 35px;
+	padding-top: 30px;
+}
+
+.socials {
+	margin-bottom: 5px;
+}
+
+.socials a:hover {
+	color: #2fca1a;
+}
+
+.socials a {
+	display: inline-block;
+	font-size: 18px;
+	float: right;
+	line-height: 36px;
+	margin-left: 20px;
+}
+.social-links, .widgetsite-search{
+	float: right;
+	margin-top: 5px;
+}
+
+@media only screen and (max-width: 500px) {
+	.site-branding, .social-links, .widgetsite-search{
+		float: none;
+		text-align: center;
+		width: 100%;
+	}
+	.socials a{
+		float: none;
+		margin-left: 5px;
+	}
+}
+@media only screen and (max-width: 350px) {
+	/* do not display the search button on extra small screens */
+	.widgetsite-search{	
+		display: none;
+		visibility: hidden;
+	}
+}
+
+/* Navigation menu */
+
+/* Removed the left and right margin of row inside the site-navigation */
+.site-navigation .row {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+.navbar {
+	border-radius: 0px;
+	margin-bottom: 0px;
+}
+.navbar-default{
+	border-color: none;
+}
+
+.navbar, .dropdown-menu{
+	background-color: #000000;
+	border-bottom: 2px solid #932213;
+}
+.navbar-nav>li>a {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.navbar-default .navbar-nav > li{
+	font-size: 16px;
+	line-height: 48px;
+	text-transform: uppercase;
+}
+@media only screen and (min-width: 768px) {
+	.dropdown:hover .dropdown-menu {
+		display: block;
+		margin-top: 0; /*  remove the gap so it doesn't close */
+	}
+	.dropdown a:hover{
+		background: url(images/menu-bg.png) repeat-y scroll right top #000000;
+	}
+	 .dropdown-menu li a:hover{
+		background-image: none;
+	 }
+	.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus{
+		color: #fff;
+		background-color: #000000;
+		background: url(images/menu-bg.png) repeat-y scroll right top #000000;
+		border-bottom: 2px solid #932213;
+		font-size: 16px;
+	}
+	.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus{
+		background: url(images/menu-bg.png) repeat-y scroll right top #000000;
+		border-bottom: 2px solid #2d2d2d;
+		border-top: 2px solid #932213;
+		color: #fff;
+	}
+	.navbar-default .navbar-nav > li > a, .navbar-default .navbar-nav > .active > a{
+		background: url(images/menu-bg.png) repeat-y scroll right top #000000;
+		background-color: #000000;
+		border-bottom: 2px solid #000000;
+		border-top: 2px solid #000000;
+		color: #fff;
+		font-size: 16px;
+	}
+	.dropdown-menu > li > a,  .dropdown-menu > .active > a{
+		background-color: #000000;
+		border-bottom: 2px solid #000000;
+		border-top: 2px solid #000000;
+		color: #fff;
+		font-size: 16px;
+	}
+	.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+		background: url(images/menu-bg.png) repeat-y scroll right top #000000;
+		background-color: #2d2d2d;
+		border-bottom: 2px solid #2d2d2d;
+		border-top: 2px solid #932213;
+		color: #fff;
+		font-size: 16px;
+	}
+	.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus .dropdown-menu>li>a:active{
+		background-color: #2d2d2d;
+		color: #fff;
+		border-bottom: 2px solid #2d2d2d;
+		border-top: 2px solid #932213;
+		font-size: 16px;
+	}
+	.navbar-brand{
+		display: none;
+		visibility: hidden;
+	}
+}
+@media only screen and (max-width: 750px) {
+	.navbar-brand {
+		color: #fff !important;
+	}
+	.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus{
+		background-color: #000000 !important;
+		border-bottom: none;
+		border-top: none;
+		color: #fff;
+		display: block;
+		font-size: 16px;
+		padding: 5px 15px 5px 25px;
+		width: 100%;
+	}
+	.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus{
+		border-bottom: none;
+		border-top: none;
+		display: block;
+		padding: 5px 15px 5px 25px;
+		width: 100%;
+	}
+	.navbar-default .navbar-nav > li > a, .navbar-default .navbar-nav > .active > a{
+		background-color: #000000 !important;
+		border-bottom: none;
+		border-top: 1px solid #383838;
+		color: #fff !important;
+		display: block;
+		font-size: 16px;
+		padding: 5px 15px 5px 25px;
+		width: 100%;
+	}
+	.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:visited, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+		background-color: #2d2d2d !important;
+		border-bottom: none;
+		border-top: 1px solid #383838;
+		color: #fff !important;
+		display: block;
+		font-size: 16px;
+		padding: 5px 15px 5px 25px;
+		width: 100%;
+	}	
+	 .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus .dropdown-menu>li>a:active{
+		background-color: #2d2d2d !important;
+		border-bottom: none;
+		border-top: 1px solid #383838;
+		color: #fff !important;
+		display: block;
+		font-size: 16px;
+		margin-left: 10px;
+		padding: 0 12px;
+		width: 100%;
+	}
+	.dropdown-menu > li > a,  .dropdown-menu > .active > a{
+		background-color: #000000;
+		border-bottom: none;
+		border-top: 1px solid #383838;
+		color: #fff !important;
+		display: block;
+		font-size: 16px;
+		margin-left: 10px;
+		padding: 0 12px;
+		width: 100%;
+	}
+}
+
+
+/**
+* Slider Section
+*/
+
+/**
+* Slider details
+*/
+.slider-details {
+	padding: 15px;
+}
+
+/**
+* Slider date
+*/
+.slider-section .slide-date {
+	background: none repeat scroll 0 0 #b22a17;
+	display: inline-block;
+	font-size: 11px;
+	padding: 4px 11px;
+}
+.slider-section .slide-date i {
+	margin-right: 9px;
+}
+
+/**
+* Slider Caption
+*/
+.slider-section .slide-caption {
+	font-size: 14px;
+	line-height: 22px;
+}
+
+/**
+* Slider Slide title
+*/
+.slider-section .slide-title a{
+	color: #ffffff;
+	font-size: 20px;
+	line-height: 24px;
+}
+
+
+/**
+* Slider Description
+*/
+.slider-section .slider-desc {
+	background: rgb(0, 0, 0);
+	background: transparent;
+	background: rgba(0, 0, 0, 0.5);
+	bottom: 0;
+	color: #ffffff;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#7f000000,endColorstr=#7f000000);
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#7f000000,endColorstr=#7f000000)";
+  zoom: 1;
+	left: 0;
+	padding-bottom: 24px;
+	position: absolute;
+	width: 100%;
+}
+@media only screen and (min-width: 992px){
+	.bx-wrapper {
+		margin: 0px;
+	}
+}
+.bx-wrapper{
+	border: 0px;
+}
+
+
+/**
+* Post Section
+*/
+
+.widgetsite-section  h3{
+	margin-bottom: 20px;
+	margin-top: 10px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.section-title {
+	border-bottom: 1px solid #d9d9d9;
+	font-size: 16px;
+	line-height: 24px;
+	margin-bottom: 15px;
+	padding: 12px 0;
+	position: relative;
+	text-transform: uppercase;
+}
+/* Make sure every post elements fit in all screen size */
+
+@media only screen and (max-width: 479px) {
+	.widgetsite-section-three h3 {
+		font-size: 18px;
+	}
+}
+@media only screen and (min-width: 480px) {
+	.widgetsite-section-three h3 {
+		font-size: 20px;
+	}
+}
+@media only screen and (max-width: 479px) {
+	.widgetsite-slider-side-section h3, .widgetsite-section-four h3, .widgetsite-section-five h3 {
+		font-size: 15px;
+	}
+}
+@media only screen and (min-width: 480px) {
+  	.widgetsite-slider-side-section h3, .widgetsite-section-four h3, .widgetsite-section-five  h3 {
+		font-size: 16px;
+	}
+}
+
+
+
+/* Foote Section */
+.site-footer h3{
+	color: #fff;
+}
+.site-footer {
+	background: #131313;
+}
+.site-footer .container{
+	background: #131313;
+	margin-top: 0px;
+}
+.site-footer .row{
+	background: #000000;
+	color: #ffffff;
+	padding: 59px 0 0;
+}
+.site-footer-inner {
+	border-top: 1px solid #fff;
+	padding: 20px;
+}

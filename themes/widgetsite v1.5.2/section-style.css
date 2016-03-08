@@ -1,0 +1,10 @@
+.sections div{
+	display: inline-block;
+	float: left;
+}
+.tags{
+	margin-left: 10px;
+}
+.clear{
+	clear: both;
+}

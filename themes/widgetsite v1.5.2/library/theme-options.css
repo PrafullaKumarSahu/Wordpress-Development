@@ -1,0 +1,13 @@
+.options div{
+	display: inline-block;
+	float: left;
+}
+.tags{
+	margin-left: 10px;
+}
+.clear{
+	clear: both;
+}
+.options {
+	margin-bottom: 10px;
+}
