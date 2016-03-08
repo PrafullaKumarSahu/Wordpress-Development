@@ -1,5 +1,7 @@
 <?php
-/*Replace Add to Cart button with members only text on single product page */
+/**
+Replace Add to Cart button with members only text on single product page
+*/
 function _wc_make_only_memebr_products() {
 	
 	if(is_user_logged_in() && function_exists('pmpro_hasMembershipLevel') && pmpro_hasMembershipLevel()){
